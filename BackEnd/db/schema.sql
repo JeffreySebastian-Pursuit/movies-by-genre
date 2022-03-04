@@ -10,5 +10,6 @@ CREATE TABLE movies_genre(
     thumbnail TEXT NOT NULL,
     year INTEGER NOT NULL,
     synopsis TEXT NOT NULL,
-    duration NUMERIC NOT NULL
-)
+    duration NUMERIC NOT NULL,
+    favorite INTEGER
+);
