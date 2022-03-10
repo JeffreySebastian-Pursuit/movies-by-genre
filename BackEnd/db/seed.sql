@@ -14,7 +14,7 @@ INSERT INTO users(display_name, photo_url) VALUES
 ('Mr. Cow', 'https://imageio.forbes.com/specials-images/imageserve/5faada47bf0dba8d4b34f82b/Best-Animal-Photos-Agora-Contest--a-wild--Icelandic--horse/960x0.jpg?fit=bounds&format=jpg&width=960'),
 ('Mrs. Fly', 'https://imageio.forbes.com/specials-images/imageserve/5faadab7bf69f224a8e5b876/Best-Animal-Photos-Agora-Contest--colorful-fly-resting-on-a-cactus-/960x0.jpg?fit=bounds&format=jpg&width=960');
 
-INSERT INTO movies_genre(genre, title, thumbnail, year, synopsis, duration, favorite, users_id)VALUES
+INSERT INTO movies(genre, title, thumbnail, year, synopsis, duration, favorite, users_id)VALUES
 ('Action', 'Creed', 'https://i.imgur.com/NQTuLtb.mp4', 2015, 'The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.', 133, 1, 1),
 ('Action', 'Furious 7', 'https://i.imgur.com/7ax74eb.mp4', 2015, 'Deckard Shaw seeks revenge against Dominic Toretto and his family for his comatose brother.', 137, 3, 2),
 ('Action', 'Guardians of the Galaxy', 'https://i.imgur.com/AylKL2G.mp4', 2014, 'A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe.', 121, 4, 3),
@@ -30,17 +30,17 @@ INSERT INTO movies_genre(genre, title, thumbnail, year, synopsis, duration, favo
 ('Children & Family', 'Finding Nemo', 'https://i.imgur.com/HtjzC5p.mp4', 2003, 'After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home.', 100, 1, 13);
 
 
-INSERT INTO comments(comment, movies_genre_id) VALUES
-('Great Movie',1),
-('Amzing Movie and actors',2),
-('Nice graphics',2),
-('One of my favarite action movies',3),
-('My favorite Anime',5),
-('One of the best Anime',6),
-('My childhood!!!', 7),
-('Such an amazing Anime', 8),
-('Ichigo!!!', 9),
-('Nice Movie',10),
-('The Matrix <3', 11),
-('Deserved the award', 12),
-('I havent seend this movie',13);
+INSERT INTO comments(comment, movies_id, user_id) VALUES
+('Great Movie',1, 1),
+('Amzing Movie and actors',2, 2),
+('Nice graphics',2, 2),
+('One of my favarite action movies',3, 3),
+('My favorite Anime',5, 5),
+('One of the best Anime',6, 6),
+('My childhood!!!', 7, 7),
+('Such an amazing Anime', 8, 8),
+('Ichigo!!!', 9, 9),
+('Nice Movie',10, 10),
+('The Matrix <3', 11, 11),
+('Deserved the award', 12, 12),
+('I havent seend this movie',13, 13);

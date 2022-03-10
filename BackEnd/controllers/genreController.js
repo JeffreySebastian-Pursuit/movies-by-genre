@@ -10,13 +10,27 @@ moviesGenre.get('/', async (req, res) => {
 })
 
 moviesGenre.get('/:genre', async (req, res) =>{
-    
-    const movie=  await getMovieByGenre(req.params.genre)
-    if(movie){
-        res.json(movie)
+    // check if theres a specific genre on what the users want
+    // if there is show that genre that requested by the user
+    // if not send a message that no genre available
+    let genres = ['Action', 'Anime', "Drama"];
+    if(genres.includes(req.params.genre)){
+        try {
+            const movie=  await getMovieByGenre(req.params.genre)
+            res.json(movie)
+            
+        } catch (error) {
+            res.json({success: false, error: true, message: 'database request invalid'}).redirect(302)
+            
+        }
+        // if(movie.payload.length){
+        // }else{
+        // }
+
     }else{
-        res.json({success: false, error: true, message: 'invalid'}).redirect(302)
+        res.json({success: false, message: "No genre available"})
     }
+    // console.log(typeof movie)
 })
 
 

@@ -8,9 +8,8 @@ CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     display_name VARCHAR(40),
     photo_url text
-
 );
-CREATE TABLE movies_genre(
+CREATE TABLE movies(
     id SERIAL PRIMARY KEY,
     genre TEXT NOT NULL,
     title TEXT NOT NULL,
@@ -25,5 +24,6 @@ CREATE TABLE movies_genre(
 CREATE TABLE comments(
     id SERIAL PRIMARY KEY,
     comment TEXT,
-    movies_genre_id INTEGER REFERENCES movies_genre (id)
+    movies_id INTEGER REFERENCES movies (id),
+    user_id INTEGER REFERENCES users (id)
 );

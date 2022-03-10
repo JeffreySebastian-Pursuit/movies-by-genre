@@ -2,7 +2,7 @@ const db = require("../db/dbConfig.js");
 
 const fetchAllMovies = async () => {
   try {
-    const movies = await db.any("SELECT * FROM movies_genre");
+    const movies = await db.any("SELECT * FROM movies");
     return { success: true, payload: movies };
   } catch (error) {
     console.log(error);
@@ -11,16 +11,16 @@ const fetchAllMovies = async () => {
 };
 
 const getMovie = async (id) => {
-  return await db.oneOrNone("SELECT * FROM movies_genre WHERE id=$1", id);
+  return await db.oneOrNone("SELECT * FROM movies WHERE id=$1", id);
 };
 
 const getAllGenre = async () => {
-  return await db.any("SELECT DISTINCT genre FROM movies_genre");
+  return await db.any("SELECT DISTINCT genre FROM movies");
 };
 
 const getMovieByGenre = async (genre) => {
   let movieByGenre = await db.any(
-    "SELECT * FROM movies_genre WHERE genre=$1",
+    "SELECT * FROM movies WHERE genre=$1",
     genre
   );
   // if (typeof genre === "string") {
@@ -36,7 +36,7 @@ const createMovie = async (newMovie) => {
     newMovie;
   try {
     const movie = await db.one(
-      "INSERT INTO movies_genre (genre, title, thumbnail, year, synopsis, duration, favorite) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      "INSERT INTO movies(genre, title, thumbnail, year, synopsis, duration, favorite) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
       [genre, title, thumbnail, year, synopsis, duration, favorite]
     );
     return { success: true, payload: movie };
