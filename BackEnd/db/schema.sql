@@ -21,9 +21,11 @@ CREATE TABLE movies(
     users_id INT REFERENCES users (id) on DELETE CASCADE
 );
 
+
 CREATE TABLE comments(
     id SERIAL PRIMARY KEY,
     comment TEXT,
     movies_id INTEGER REFERENCES movies (id),
-    user_id INTEGER REFERENCES users (id)
+    user_id INTEGER REFERENCES users (id),
+    dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

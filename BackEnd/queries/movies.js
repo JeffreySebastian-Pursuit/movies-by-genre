@@ -1,4 +1,5 @@
 const db = require("../db/dbConfig.js");
+const capitalChar = require('../helperFuntions/validateChar')
 
 const fetchAllMovies = async () => {
   try {
@@ -19,16 +20,14 @@ const getAllGenre = async () => {
 };
 
 const getMovieByGenre = async (genre) => {
-  let movieByGenre = await db.any(
-    "SELECT * FROM movies WHERE genre=$1",
-    genre
-  );
-  // if (typeof genre === "string") {
+  try {
+    let capitalize = capitalChar(genre)
+    let movieByGenre = await db.any("SELECT * FROM movies WHERE genre=$1", capitalize);
     return { success: true, payload: movieByGenre };
-  // } else {
-  //   let message = "Genre Not Found";
-  //   return { success: false, payload: message };
-  // }
+  } catch (error) {
+    console.log(error)
+    return { success: false, payload: error };
+  }
 };
 
 const createMovie = async (newMovie) => {
