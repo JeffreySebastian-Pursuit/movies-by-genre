@@ -7,7 +7,7 @@ CREATE DATABASE movies_dev;
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     display_name VARCHAR(40),
-    photo_url text
+    photo_url TEXT
 );
 CREATE TABLE movies(
     id SERIAL PRIMARY KEY,
@@ -18,7 +18,7 @@ CREATE TABLE movies(
     synopsis TEXT NOT NULL,
     duration NUMERIC NOT NULL,
     favorite INTEGER,
-    users_id INT REFERENCES users (id) on DELETE CASCADE
+    user_id INT REFERENCES users (id) on DELETE CASCADE
 );
 
 

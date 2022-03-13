@@ -14,7 +14,7 @@ INSERT INTO users(display_name, photo_url) VALUES
 ('Mr. Cow', 'https://imageio.forbes.com/specials-images/imageserve/5faada47bf0dba8d4b34f82b/Best-Animal-Photos-Agora-Contest--a-wild--Icelandic--horse/960x0.jpg?fit=bounds&format=jpg&width=960'),
 ('Mrs. Fly', 'https://imageio.forbes.com/specials-images/imageserve/5faadab7bf69f224a8e5b876/Best-Animal-Photos-Agora-Contest--colorful-fly-resting-on-a-cactus-/960x0.jpg?fit=bounds&format=jpg&width=960');
 
-INSERT INTO movies(genre, title, thumbnail, year, synopsis, duration, favorite, users_id)VALUES
+INSERT INTO movies(genre, title, thumbnail, year, synopsis, duration, favorite, user_id)VALUES
 ('Action', 'Creed', 'https://i.imgur.com/NQTuLtb.mp4', 2015, 'The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.', 133, 1, 1),
 ('Action', 'Furious 7', 'https://i.imgur.com/7ax74eb.mp4', 2015, 'Deckard Shaw seeks revenge against Dominic Toretto and his family for his comatose brother.', 137, 3, 2),
 ('Action', 'Guardians of the Galaxy', 'https://i.imgur.com/AylKL2G.mp4', 2014, 'A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe.', 121, 4, 3),
