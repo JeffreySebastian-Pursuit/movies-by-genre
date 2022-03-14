@@ -51,6 +51,9 @@ const updateMovie = async (id, info) => {
   [genre, title, thumbnail, year, synopsis, duration, favorite, id])
 
 }
+const deleteMovie = async (id) => {
+  return await db.oneOrNone('DELETE FROM movies WHERE id=$1 RETURNING *', id)
+}
 
 module.exports = {
   fetchAllMovies,
@@ -58,5 +61,6 @@ module.exports = {
   createMovie,
   getMovieByGenre,
   getAllGenre,
-  updateMovie
+  updateMovie,
+  deleteMovie
 };
