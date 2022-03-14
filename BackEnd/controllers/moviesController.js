@@ -1,7 +1,7 @@
 const express = require("express");
 const movies = express.Router();
 
-const { fetchAllMovies, getMovie, createMovie } = require("../queries/movies");
+const { fetchAllMovies, getMovie, createMovie, updateMovie } = require("../queries/movies");
 
 
 movies.get('/', async (req, res) => {
@@ -23,4 +23,10 @@ movies.post('/', async (req, res) => {
     res.json(result)
 })
 
+movies.put('/:id', async (req, res) => {
+    const {id} = req.params;
+    const movie = req.body;
+    const editMovie = await updateMovie(id, movie);
+    editMovie ? res.json(editMovie) : res.status(422).json({success: false, error: true, message: 'invalid id'})
+})
 module.exports = movies;

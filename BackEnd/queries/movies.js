@@ -45,10 +45,18 @@ const createMovie = async (newMovie) => {
   }
 };
 
+const updateMovie = async (id, info) => {
+  const {genre, title, thumbnail, year, synopsis, duration, favorite} = info;
+  return db.oneOrNone('UPDATE movies SET genre =$1, title = $2, thumbnail=$3, year=$4, synopsis=$5, duration=$6, favorite=$7 WHERE id = $8 RETURNING *',
+  [genre, title, thumbnail, year, synopsis, duration, favorite, id])
+
+}
+
 module.exports = {
   fetchAllMovies,
   getMovie,
   createMovie,
   getMovieByGenre,
   getAllGenre,
+  updateMovie
 };
