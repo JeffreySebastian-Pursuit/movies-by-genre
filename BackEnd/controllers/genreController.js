@@ -19,6 +19,7 @@ moviesGenre.get("/:genre", async (req, res) => {
     "Award-Winning",
     "Romance",
     "International",
+    'Horror'
   ];
   genres = genres.map((el) => el.toLocaleUpperCase());
   const movie = await getMovieByGenre(req.params.genre);

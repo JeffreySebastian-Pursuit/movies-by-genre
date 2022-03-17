@@ -19,7 +19,7 @@ movies.get("/:id", async (req, res) => {
   if (movie) {
     res.json(movie);
   } else {
-    res.json({ success: false, error: true, message: "invalid" });
+    res.status(404).json({ success: false, error: true, message: "invalid" });
   }
 });
 movies.post("/", async (req, res) => {
