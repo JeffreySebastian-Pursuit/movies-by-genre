@@ -9,7 +9,7 @@ comments.get("/", async (req, res) => {
 
 comments.get("/:id", async (req, res) => {
   const comment = await getComment(req.params.id);
-  if (comment) {
+  if (comment.length) {
     res.json(comment);
   } else {
     res.status(404).json({ success: false, payload: "not found" });
