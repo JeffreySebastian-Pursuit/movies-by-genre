@@ -1,10 +1,13 @@
 // import { useState } from "react";
 
 const MovieCollections = ({ movies, genre, loading }) => {
-  console.log(movies)
+  
+  function firstLetter(genre){
+    return genre.charAt(0).toUpperCase() + genre.substring(1);
+  }
   return (
     <>
-      <h1>{genre}</h1>
+      <h1>{firstLetter(genre)}</h1>
       {!loading && (
         <ul>
           {movies.map((movie, index) => {
