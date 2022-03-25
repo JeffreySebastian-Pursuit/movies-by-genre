@@ -3,10 +3,10 @@ const NavBar = () => {
   return (
     <div>
       <nav>
-        <NavLink exact to="/">
+        <NavLink exact to="/movies">
           Films
         </NavLink>
-        <NavLink exact to="/films">
+        <NavLink exact to="/posts">
           Posts
         </NavLink>
       </nav>
