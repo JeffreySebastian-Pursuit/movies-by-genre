@@ -3,6 +3,7 @@ import Index from "./Pages/Index";
 import NavBar from "./Components/NavBar";
 import Home from "./Pages/Home";
 import ShowPage from "./Pages/ShowPage";
+import Post from "./Pages/Post";
 import React from "react";
 import "./App.css";
 
@@ -18,6 +19,9 @@ function App() {
             </Route>
             <Route exact path="/movies">
               <Index />
+            </Route>
+            <Route exact path="/movies/new">
+              <Post />
             </Route>
             <Route exact path="/movies/:id">
               <ShowPage />
