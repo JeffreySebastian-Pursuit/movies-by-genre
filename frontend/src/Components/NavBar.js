@@ -7,7 +7,7 @@ const NavBar = () => {
           Films
         </NavLink>
         <NavLink exact to="/movies/new">
-          Posts
+          Post
         </NavLink>
       </nav>
     </div>

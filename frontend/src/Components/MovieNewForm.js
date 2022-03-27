@@ -58,7 +58,7 @@ function MovieNewForm() {
           <option disabled>Select Genre</option>
           {genres.map((genre) => {
             return (
-              <option key={genre} value={movie.genre}>
+              <option key={genre} value={genre}>
                 {genre}
               </option>
             );
