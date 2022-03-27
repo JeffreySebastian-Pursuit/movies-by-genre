@@ -9,6 +9,7 @@ function MovieDetails() {
   const [movies, setMovies] = useState({});
   const [loading, setLoading] = useState(true);
 
+  let history = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
@@ -23,8 +24,25 @@ function MovieDetails() {
       }
     };
     fetchAllMovie();
-  },[id]);
+  }, [id]);
 
+  const deleteMovie = async (id) => {
+    try {
+      let res = await axios.delete(`${API}/movies/film/${id}`);
+      setMovies(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await deleteMovie(id);
+      history.push("/movies");
+    } catch (error) {
+      console.lof(error);
+    }
+  };
   const { genre, title, thumbnail, year, synopsis, duration, favorite } =
     movies;
   return (
@@ -40,9 +58,10 @@ function MovieDetails() {
           <p>Duration{duration}</p>
           <p>Year: {year}</p>
           <p>Likes: {favorite}</p>
+          <button onClick={handleDelete}>Delete</button>
         </>
       )}
-       {loading && <div>LOADING.... </div>}
+      {loading && <div>LOADING.... </div>}
     </div>
   );
 }
