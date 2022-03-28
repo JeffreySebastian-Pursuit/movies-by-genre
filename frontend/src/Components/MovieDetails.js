@@ -59,6 +59,12 @@ function MovieDetails() {
           <p>Year: {year}</p>
           <p>Likes: {favorite}</p>
           <button onClick={handleDelete}>Delete</button>
+          <Link to={`/movies/${id}/edit`}>
+            <button> Edit </button>
+          </Link>
+          <Link to={`/movies`}>
+            <button> Back </button>
+          </Link>
         </>
       )}
       {loading && <div>LOADING.... </div>}

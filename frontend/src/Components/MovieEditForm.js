@@ -1,11 +1,11 @@
 import React from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { apiURL } from "../util/apiURL";
 
 const API = apiURL();
-function MovieNewForm() {
+function MovieEditForm() {
   const [movie, setMovie] = useState({
     genre: "",
     title: "",
@@ -17,6 +17,7 @@ function MovieNewForm() {
   });
 
   const history = useHistory();
+  const { id } = useParams();
   let genres = [
     "Action",
     "Anime",
@@ -27,21 +28,34 @@ function MovieNewForm() {
     "Horror",
   ];
 
-  const createMovie = async (newMovie) => {
+  const createMovie = async (updateMovie) => {
     try {
-      await axios.post(`${API}/movies/film`, newMovie);
+      await axios.put(`${API}/movies/film`, updateMovie);
       history.push("/movies");
     } catch (error) {
       return error;
     }
   };
 
+  useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        let res = await axios.get(`${API}/movies/film/${id}`);
+        setMovie(res?.data);
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchMovie();
+  }, [id]);
+
   const handleChange = (e) => {
     setMovie({ ...movie, [e.target.id]: e.target.value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    createMovie(movie);
+    createMovie(movie, id);
   };
 
   const { title, thumbnail, year, synopsis, duration, favorite } = movie;
@@ -135,9 +149,12 @@ function MovieNewForm() {
         <button className="submit-item-form" type="submit">
           Submit
         </button>
+        <Link to={`/movies/${id}`}>
+          <button>Cancel</button>
+        </Link>
       </form>
     </div>
   );
 }
 
-export default MovieNewForm;
+export default MovieEditForm;

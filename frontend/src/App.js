@@ -4,6 +4,7 @@ import NavBar from "./Components/NavBar";
 import Home from "./Pages/Home";
 import ShowPage from "./Pages/ShowPage";
 import Post from "./Pages/Post";
+import Edit from "./Pages/Edit";
 import React from "react";
 import "./App.css";
 
@@ -25,6 +26,9 @@ function App() {
             </Route>
             <Route exact path="/movies/:id">
               <ShowPage />
+            </Route>
+            <Route exact path="/movies/:id/edit">
+              <Edit />
             </Route>
           </Switch>
         </main>
