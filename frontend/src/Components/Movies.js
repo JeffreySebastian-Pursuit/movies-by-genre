@@ -5,17 +5,15 @@ import MovieCollections from "./MovieCollections";
 
 const API = apiURL();
 
-
 const Movies = () => {
   const [movies, setMovies] = useState({});
-  // const [genres, setGenres] = useState([]);
+  const [searchByGenre, setsearchByGenre] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAllMovies = async () => {
       try {
         let res = await axios.get(`${API}/movies/film`);
-        // let genre = await axios.get(`${API}/movies/genre`);
         let obj = {};
         for (let movie of res.data.payload) {
           if (!(movie.genre in obj)) {
@@ -25,6 +23,7 @@ const Movies = () => {
         }
         setMovies(obj);
         setLoading(false);
+        // setGenres(genre.data);
       } catch (error) {
         console.log(error);
       }
@@ -34,10 +33,34 @@ const Movies = () => {
 
   return (
     <div>
+      <div className="searchBar">
+        <input
+          className="searchBar__input"
+          placeholder="Search by genre"
+          value={searchByGenre}
+          onChange={(event) => setsearchByGenre(event.target.value)}
+        />
+      </div>
       {!loading &&
-        Object.keys(movies)?.map((key) => {
-          return <MovieCollections genre={key} movies={movies[key]} loading={loading} />;
-        })}
+        Object.keys(movies)
+          ?.filter((genre, index) => {
+            if (searchByGenre === "") {
+              return genre;
+            } else if (
+              genre?.toLowerCase().includes(searchByGenre?.toLowerCase())
+            ) {
+              return genre;
+            }
+          })
+          .map((key) => {
+            return (
+              <MovieCollections
+                genre={key}
+                movies={movies[key]}
+                loading={loading}
+              />
+            );
+          })}
       {loading && <MovieCollections loading={true} />}{" "}
     </div>
   );
